@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>HelloMVC</title>
+</head>
+<body>
+<!--템플릿 엔진 없이 열면 hello! empty가 뜸(서버 없이 open하는 경우)-->
+<p th:text="'안녕하세요. ' + ${name}">hello! empty</p>
+</body>
+</html>
