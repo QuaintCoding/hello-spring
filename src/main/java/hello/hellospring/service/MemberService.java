@@ -5,6 +5,7 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,9 @@ import java.util.Optional;
 // ctrl + shift + t 누르면 test 생성할 수 있음
 // Service 어노테이션을 해야 memberService가 스프링 빈으로 등록됨
 //@Service
+
+// JPA를 쓰려면 항상 트랜젝션이 있어야됨(저장이나 변경할 때)
+@Transactional
 public class MemberService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
     private final MemberRepository memberRepository;
