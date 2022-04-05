@@ -30,16 +30,26 @@ public class MemberService {
      * 회원 가입
      */
     public Long join(Member member) {
-        // 같은 이름이 있는 중복 회원 X
-        // ctrl + alt + v하면 자동으로 리턴 만들어줌
-        // Optional<Member> result = memberRepository.findByName(member.getName());
+        long start = System.currentTimeMillis();
 
-        // 멤버에 값이 있으면 exception 발생
-        // Optional<Member>로 변수 만드는 것보다 바로 사용하는게 더 좋음
-        validateDuplicateMember(member);
-        // intellij refactor this 단축키(함수로 빼기): ctrl + alt + shift + t
-        memberRepository.save(member);
-        return member.getId();
+        try {
+            // 같은 이름이 있는 중복 회원 X
+            // ctrl + alt + v하면 자동으로 리턴 만들어줌
+            // Optional<Member> result = memberRepository.findByName(member.getName());
+
+            // 멤버에 값이 있으면 exception 발생
+            // Optional<Member>로 변수 만드는 것보다 바로 사용하는게 더 좋음
+            validateDuplicateMember(member);
+            // intellij refactor this 단축키(함수로 빼기): ctrl + alt + shift + t
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        }
+
+
     }
 
     private void validateDuplicateMember(Member member) {
